@@ -114,13 +114,15 @@ main, aside {
     overflow-y: auto;
     background-color: white;
 }
-    .event-headline{
-        height: 14%;
-        border: solid #f7f7f7 1px;
-    }
-    .event-description p{
-        margin-top: 1em;
-    }
+    
+.event-headline{
+    height: 14%;
+    border: solid #f7f7f7 1px;
+}
+
+.event-description p {
+    margin-top: 1em;
+}
 
 /*Date, Location, Contacts*/
 .details-aside {
@@ -178,7 +180,7 @@ footer {
 
 /* The switch - the box around the slider */
 .switch {
-    margin-top: 10px;
+    margin-top: 25px;
     position: fixed;
     top: 5px;
     display: block;
