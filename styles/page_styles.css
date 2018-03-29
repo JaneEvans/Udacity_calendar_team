@@ -121,8 +121,9 @@ main, aside {
     .event-description p{
         margin-top: 1em;
     }
+
 /*Date, Location, Contacts*/
-.details-aside{
+.details-aside {
     float: left;
     height: 500px;
     width: 23%;
@@ -131,29 +132,32 @@ main, aside {
     padding: 0 2%;
     background-color: white;
 }
-    .details-aside div{
-        margin-bottom: 2em;
-    }
-    /*Google Map*/
-    .map {
-        position: relative;
-        margin-top: 1em;
-        padding-top: 30px;
-        padding-bottom: 55%;
-        height: 0;
-        overflow: hidden;
-        }
 
-        .map iframe,
-        .map object,
-        .map embed {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        }
-footer{
+.details-aside div {
+    margin-bottom: 2em;
+}
+    
+/*Google Map*/
+.map {
+    position: relative;
+    margin-top: 1em;
+    padding-top: 30px;
+    padding-bottom: 55%;
+    height: 0;
+    overflow: hidden;
+}
+
+.map iframe,
+.map object,
+.map embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+footer {
     clear: both;
     background-color: #f7f7f7;
     width: 100%;
@@ -163,16 +167,18 @@ footer{
     justify-content: center;
     bottom: 0;
 }
-    .copywrite{
+
+.copywrite {
     color: #919699;
     font-size: small;
     font-weight: normal;
-    }
-    /* landing page styles */
+}
+
+/* landing page styles */
 
 /* The switch - the box around the slider */
 .switch {
-    margin-top: 10px;
+    margin-top: 58px;
     position: relative;
     top: 5px;
     display: block;
@@ -196,6 +202,7 @@ footer{
     background-color: #ccc;
     transition: .4s;
 }
+
 .slider:before {
     position: absolute;
     content: "";
@@ -208,33 +215,31 @@ footer{
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+    background-color: #2196F3;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px #2196F3;
 }
 
 input:checked + .slider:before {
-  transform: translateX(36px);
+    transform: translateX(36px);
 }
 
-.slider:after
-{
- content:'List';
- color: black;
- display: block;
- position: absolute;
- transform: translate(-50%,-50%);
- top: 50%;
- left: 50%;
- font-size: 10px;
- font-family: Verdana, sans-serif;
+.slider:after {
+    content:'List';
+    color: black;
+    display: block;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    font-size: 10px;
+    font-family: Verdana, sans-serif;
 }
 
-input:checked + .slider:after
-{
-  content:'Calendar';
+input:checked + .slider:after {
+    content:'Calendar';
 }
 
 /* Rounded sliders */
@@ -264,7 +269,6 @@ input:checked + .slider:after
     width: 37%;
     background-color:#FFFFFFFF;
     display: none;
-
 }
 
 #calendarView {
@@ -298,6 +302,7 @@ input:checked + .slider:after
     display: flex;
     flex-flow: wrap;
 }
+
 .cal .row-header span, .cal time {
     min-width: 14.2857%;
     max-width: 14.2857vw;
@@ -315,16 +320,17 @@ input:checked + .slider:after
     /*min-height: 100px;*/
 /*}*/
         /* list view */
-.event-list-view-hidden{
+.event-list-view-hidden {
     visibility: hidden;
 }
-.event-list-view{
+
+.event-list-view {
     width: 90%;
     min-height: auto;
     overflow: inherit;
 }
 
-h4{
+h4 {
     color: #353535FF;
 }
 
