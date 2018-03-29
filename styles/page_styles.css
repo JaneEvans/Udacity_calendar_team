@@ -1,7 +1,7 @@
 /* global styles */
 @import url('https://fonts.googleapis.com/css?family=Mina');
 
-body{
+body {
     max-width: 99%;
     overflow-x: hidden;
     font-family: Arial, Helvetica, sans-serif;
@@ -12,16 +12,19 @@ body{
     line-height: 1.5em;
     /*background-color: #f7f7f7;*/
 }
-    h1{
-        font-size: 150%;
-        font-weight: bold;
-        color:#000000FF;
+
+h1 {
+    font-size: 150%;
+    font-weight: bold;
+    color:#000000FF;
+}
+    
+h2 {
+    font-size: inherit;
+    font-weight: bold;
     }
-    h2{
-        font-size: inherit;
-        font-weight: bold;
-    }
-.wrapper{
+
+.wrapper {
     width: 100%;
     max-width: 100%;
     margin: 0;
@@ -30,55 +33,74 @@ body{
     overflow-x: hidden;
     overflow-y: hidden;
 }
-.header-wrapper{
+
+.header-wrapper {
     margin-left: 10%;
     width: 100%;
     max-width: 100%;
     margin: 0;
     padding: 0;
 }
-main, aside{
+
+main, aside {
     min-height: 85vh;
 }
-.global-header{
+
+.global-header {
     background: linear-gradient(92.78deg, #8FBEDB 1.88%, rgba(222, 236, 244, 0.29337) 75.05%, rgba(255, 255, 255, 0) 98.6%), #1BB24E;*/
     background:#C4C4C4FF;
-    /*box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);*/
-    width: 100%;
+    /*box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);*/    
     height: 50px;
     padding: 15px;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
-    #website-title{
-        color: #2A3840;
-        font-family: 'Mina', sans-serif;
-        font-size: 2.5em;
-        font-weight: bold;
-        float: left;
-    }
-    .global-nav{
+
+#website-title {
+    color: #2A3840;
+    font-family: 'Mina', sans-serif;
+    font-size: 2.5em;
+    font-weight: bold;
+    float: left;
+}
+
+.global-nav {
     background-color: transparent;
     color: #2a3840;
     font-size: 110%;
     width: 42%;
     float: right;
-    }
-    #navigation{
-        list-style-type: none;
-        margin: : 0;
-        padding-right: 20px;
-        overflow: hidden;
-        float: right;
-    }
-        #navigation li{
-        float: left;
-        padding: 0 5px;
+}
+
+#navigation {
+    list-style-type: none;
+    margin: : 0;
+    padding-right: 20px;
+    overflow: hidden;
+    float: right;
+}
+
+#navigation li{
+    float: left;
+    padding: 0 5px;
+}
+
+#navigation li a {
+    text-decoration: none;
         }
-        #navigation li a {
-        text-decoration: none;
-        }
-        #navigation li a:hover {
-        color: #fff;
-        }
+
+#navigation li a:hover {
+    color: #fff;
+}
+
+// Prevent overlay with fixed header
+.cal-main,
+.details-main,
+.about-main, {
+    margin-top: 52px;
+}
+
 /*Event title, Description*/
 .details-main{
     float: left;
