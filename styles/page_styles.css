@@ -178,7 +178,7 @@ footer {
 
 /* The switch - the box around the slider */
 .switch {
-    margin-top: 58px;
+    margin-top: 10px;
     position: relative;
     top: 5px;
     display: block;
