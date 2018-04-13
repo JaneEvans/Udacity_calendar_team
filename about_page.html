@@ -21,7 +21,10 @@
                     <a href="index.html" target="_top">What is the next tech event in Seattle?</a>
                 </div>
                 <nav role="navigation" class="global-nav">
-                    <i class="material-icons small-nav-open-icon">dehaze</i>
+                    <div class="small-nav-open-icon">
+                        <i class="material-icons small-nav-open-icon">dehaze</i>
+                        Menu
+                    </div>
                     <div id="navigation">
                         <i class="material-icons small-nav-close-icon">clear</i>
                         <ul>
@@ -41,43 +44,49 @@
                  
     <div id='about-container'>
 
-    <!--      /*Hovercards for Team Member Bios*/ -->
+    <div class="modal" id="Jinjin-Ge-modal">
+      <div class="about-modal-content">
+      <span class="about-close">&times;</span>
+      <p class="bio">Jinjin Ge is a growing hacker working in the travel industry. She loves backpacking, skiing and playing piano in her spare time.<br><br>Her focus in this project has been on extracting events by integrating this site with Eventbrite's API, on the creation of the event 'list view' feature and on implimenting the functionality of the event filter.<br><br>You can find Jinjin on <a href=" https://www.linkedin.com/in/jinjinge/">LinkedIn</a>.</p>
+      </div>
+    </div>
+
+    <div class="modal" id="Robert-Grunau-modal">
+      <div class="about-modal-content">
+      <span class="about-close">&times;</span>
+      <p class="bio">Robert Grunau is a recovering writer, and (hopes) to soon be a former bike shop employee. He got his start coding when he realized he needed a straight gig, but now he enjoys the pursuit because of how it pushes him.</p>
+      </div>
+    </div>
+
+    <div class="modal" id="Ming-Ho-modal">
+      <div class="about-modal-content">
+      <span class="about-close">&times;</span>
+      <p class="bio">Ming is an aspiring programmer and data analyst. He loves hiking, backpacking, snowboarding, and traveling in his spare time.<br><br> His focus in this project has been on the creation of the Sign Up, Login, and Submit Event pages.<br><br> You can find Ming on<a href="https://www.linkedin.com/in/mingyho/"> LinkedIn</a>.</p>
+      </div>
+    </div>
+
+    <div class="modal" id="Yuka-Mullen-modal">
+      <div class="about-modal-content">
+      <span class="about-close">&times;</span>
+      <p class="bio">Yuka Mullen is a Japanese cultural workshop instructor who provides classes on Vashon Island, WA. <br> <br>Yuka worked as a web developer in Japan. <br> <br> She now enjoys working and learning with the team from the Udacity Front End Web Development Nanodegree course in the Grow with Google scholarship program.<br><br>You can find Yuka on <a href = "https://github.com/Quiwah">GitHub</a>.</p>
+      </div>
+    </div>
     
-    <div class="hovercard" id="Yuka-Mullen-bio">
-      <span class="close-hovercard">&times;</span>
-      <p class='bio'>Yuka Mullen is a Japanese cultural workshop instructor who provides classes on Vashon Island, WA. <br> <br>Yuka worked as a web developer in Japan. <br> <br> She now enjoys working and learning with the team from the Udacity Front End Web Development Nanodegree course in the Grow with Google scholarship program.<br><br>You can find Yuka on <a href = "https://github.com/Quiwah">GitHub</a>.</p>.
+    <div class="modal" id="Jacob-Olson-modal">
+      <div class="about-modal-content">
+      <span class="about-close">&times;</span>
+      <p class="bio">Jacob Olson is a Seattlelite with a passion for community and for learning; he believes in striving to bring out the best in himself and others and in the power of tech.<br><br>Jacob's primary focus in this project has been on building the About page. He hopes to become an excellent web developer and coder and to have a chance to bring his own experiences to the table.<br><br>You can find Jacob on <a href="https://www.linkedin.com/in/jacobwolson/">LinkedIn</a> and on <a href=https://github.com/jacobwolson>GitHub</a>.</p>
+      </div>
+    </div>    
+
+    <div class="modal" id="Alex-Tran-modal">
+      <div class="about-modal-content">
+      <span class="about-close">&times;</span>
+      <p class="bio">Alex Tran is a UX Designer who can code. He’s based in beautiful Seattle, WA. <br><br>When not designing, he can be found rock climbing, eating banh mi sandwiches, or hanging out with his partner and dog.</p>
+      </div>
     </div>
 
-    <div class="hovercard" id="Jinjin-Ge-bio">
-      <div class="popover-content">
-        <span class="close-hovercard">&times;</span>
-        <p>Jinjin Ge is a growing hacker working in the travel industry. She loves backpacking, skiing and playing piano in her spare time.<br><br>You can find Jinjin on <a href=" https://www.linkedin.com/in/jinjinge/">LinkedIn</a>.</p>
-      </div> 
-    </div>
-
-    <div class="hovercard" id="Alex-Tran-bio">
-      <div class="popover-content">
-        <span class="close-hovercard">&times;</span>
-        <p>Alex Tran is a UX Designer who can code. He’s based in beautiful Seattle, WA. <br><br>When not designing, he can be found rock climbing, eating banh mi sandwiches, or hanging out with his partner and dog.</p>
-      </div> 
-    </div>
-
-    <div class="hovercard" id="">
-      <div class="popover-content">
-        <span class="close-hovercard">&times;</span>
-        <p>Bio bio bio bio</p> 
-      </div> 
-    </div>
-
-    <div class="hovercard" id="">
-      <div class="popover-content">
-        <span class="close-hovercard">&times;</span>
-        <p>Robert Grunau is the resident backend development rockstar.</p> 
-      </div> 
-    </div>
-
-
-       
+    
         <!-- /*About Us" i.e. "Growing Together" section*/ -->
         <div id='about-us'>
             <h1>Growing Together</h1>
@@ -88,44 +97,39 @@
         </div>
   
 <!-- /*Team Roster section*/ -->
+      <!-- /*Team Roster section*/ -->
       <div id='about-team'>
       <h2>Meet the Team</h2>
         <h3>- Click a team member's profile to learn more about them.</h3>
-        <!--       <div id ='roster-container'> -->
         <div id='roster'>
           
           <div class='roster-row' id='roster-row-1'>
-            <div class='profile'>
-              <p class='name'>Jacqueline Bostow</p>
-               <img id='profile-image' src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png">
-              <p class='focus'>- Focus focus<br>- Focus focus</p>
+            <div class='profile' id='Jacki-Bostow-profile'>
+              <p class='name'>Jacki Bostow</p>
+               <img class='profile-image' src="https://res.cloudinary.com/dnyzg8tsw/image/upload/v1523480805/jacki_headshot_cropped.jpg">
+                <p class='focus'>- Organized group meetings<br>- Event calendar creation<br>- Responsive layout</p>
             </div>
             <div class='profile' id='Jinjin-Ge-profile'>
               <p class='name'>Jinjin Ge</p>
-              <img id='profile-image' src="http://res.cloudinary.com/dnyzg8tsw/image/upload/v1523025879/200x200.jpg">
-              <p class='focus'>- Extraction of events from source API<br>- Event filter functionality</p>
-            </div>
-            <div class='profile' id='Robert-Grunau-profile'>
-              <p class='name'>Robert Grunau</p>
-              <img id='profile-image' src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png">
-              <p class='focus'>- Focus focus<br>- Focus focus</p>
+              <img class='profile-image' src="http://res.cloudinary.com/dnyzg8tsw/image/upload/v1523025879/200x200.jpg">
+              <p class='focus'>- Event data extraction<br> - Event list view creation<br> - Event filter functionality</p>
             </div>
           </div>
 
           <div class='roster-row' id='roster-row-2'>
-            <div class='profile'>
-              <p class='name'>Ming Ho</p>
-              <img id='profile-image' src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png">
-              <p class='focus'>- Focus focus<br>- Focus focus</p>
+          <div class='profile' id='Robert-Grunau-profile'>
+              <p class='name'>Robert Grunau</p>
+              <img class='profile-image' src="https://res.cloudinary.com/dnyzg8tsw/image/upload/v1523426238/Robert_cropped.jpg">
+              <p class='focus'></p>
             </div>
-            <div class='profile'>
-              <p class='name'>Taylor Isom</p>
-              <img id='profile-image' src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png">
-              <p class='focus'>- Focus focus<br>- Focus focus</p>
+            <div class='profile' id='Ming-Ho-profile'>
+              <p class='name'>Ming Ho</p>
+              <img class='profile-image' src="http://res.cloudinary.com/dnyzg8tsw/image/upload/v1523406610/Ming_cropped.jpg">
+              <p class='focus'>- Sign Up page<br>- Login page<br>- Submit Event page</p>
             </div>
             <div class='profile' id='Yuka-Mullen-profile'>
               <p class='name'>Yuka Mullen</p>
-              <img id='profile-image' src="http://res.cloudinary.com/dnyzg8tsw/image/upload/v1523025884/yuka.jpg">
+              <img class='profile-image' src="http://res.cloudinary.com/dnyzg8tsw/image/upload/v1523025884/yuka.jpg">
               <p class='focus'>- Event Details page<br>- Color scheme</p>
             </div>
           </div>
@@ -133,22 +137,16 @@
           <div class='roster-row' id='roster-row-3'>
             <div class='profile' id='Jacob-Olson-profile'>
               <p class='name'>Jacob Olson</p>
-              <img id='profile-image' src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png">
+              <img class='profile-image' src="http://res.cloudinary.com/dnyzg8tsw/image/upload/v1523360647/2017_Jacob_Olson.jpg">
               <p class='focus'>- About page</p>
-            </div>
-            <div class='profile'>
-              <p class='name'>Torey Schell</p>
-              <img id='profile-image' src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png">
-              <p class='focus'>- Focus focus<br>- Focus focus</p>
             </div>
             <div class='profile' id='Alex-Tran-profile'>
               <p class='name'>Alex Tran</p>
-              <img id='profile-image' src="http://res.cloudinary.com/dnyzg8tsw/image/upload/v1523032995/alex.jpg">
+              <img class='profile-image' src="http://res.cloudinary.com/dnyzg8tsw/image/upload/v1523032995/alex.jpg">
               <p class='focus'>- UX Advisor</p>
            </div>
           </div> 
       </div>
-      <!--       </div> -->
       </div>
 
  
@@ -159,31 +157,27 @@
             <form action="action_page.php">
               <label for="name">Name</label>
               <br>
-              <input type="text" id="name" name="name" placeholder="Your Name">
+              <input type="text" id="name" name="name" placeholder=" Your Name">
               <br>
-              <label for="email">E-mail</label>
+              <label for="email">Email</label>
               <br>
-              <input type="text" id="email" name="email" placeholder="E-mail address">
+              <input type="text" id="email" name="email" placeholder=" Your Email Address">
               <br>
               <label for="message">Message</label>
               <br>
-              <textarea id="message" name="message" placeholder="What's on your mind ... ?" style="height:200px"></textarea>
+              <textarea id="message" name="message" placeholder="Talk to us ..."></textarea>
               <br>
               <input type="submit" value="Send" id='send'>
       </aside>
-
+ 
     </div>
 </main>
 
-        <footer>
-            <div class="copywrite">
-                &copy; 2018<script>new Date().getFullYear()>2018&&document.write("-"+new Date().getFullYear());</script> Udacity GwG Washington State Team
-            </div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script src="./javascripts/scripts.js"></script>
-            <script src="./javascripts/calendar.js"></script>
-            <script src="./javascripts/about.js"></script>
-        </footer>
+    <footer>
+        <div class="copywrite">
+            &copy; 2018<script>new Date().getFullYear()>2018&&document.write("-"+new Date().getFullYear());</script> Udacity GwG Washington State Team
+        </div>
+    </footer>
     </div> <!--End wrapper-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./javascripts/scripts.js"></script>

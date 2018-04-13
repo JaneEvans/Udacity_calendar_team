@@ -1,45 +1,40 @@
 $(document).ready(function(){
   
-  let yukaMullenBio = $('#Yuka-Mullen-bio');
-  let jinjinGeBio = $('#Jinjin-Ge-bio');
-  let alexTranBio = $('#Alex-Tran-bio');
+  
+  
+  let person;
+  let thisRow;
 
+  $('.profile').on('click', function () {
+    let person = $(this).find('.name').text();
+    if (person === 'Jacki Bostow') {
+    ;
+    } else if (person === 'Jinjin Ge') {
+    $('#Jinjin-Ge-modal').css('display', 'block');
+    } else if (person === 'Robert Grunau') {
+    $('#Robert-Grunau-modal').css('display', 'block');
+    } else if (person === 'Ming Ho') {
+    $('#Ming-Ho-modal').css('display', 'block');
+    } else if (person === 'Yuka Mullen') {
+    $('#Yuka-Mullen-modal').css('display', 'block');
+    } else if (person === 'Jacob Olson') {
+    $('#Jacob-Olson-modal').css('display', 'block');
+    } else if (person === 'Alex Tran') {
+    $('#Alex-Tran-modal').css('display', 'block');
+    } else {
+    let thisRow = $(this).parent().attr('id');
+      if (thisRow === 'roster-row-1') {
+      $(this).css({'transform' : 'rotate(350deg)'});
+      } else if (thisRow === 'roster-row-2') {
+      $(this).css({'transform' : 'rotate(12deg)'});
+      } else if (thisRow === 'roster-row-3') {
+      $(this).css({'transform' : 'rotate(331deg)'});
+      };
+    };
+  });
 
-  /*Jinjin Ge hovercard functionality*/
-  $('#Jinjin-Ge-profile').on('click', function () {
-    jinjinGeBio.css('display', 'block');
-    }
-  );
-
-  jinjinGeBio.find('.close-hovercard').on('click', function () {
-    jinjinGeBio.css('display', 'none');
-    event.preventDefault();
-    }
-  );
-
-
-  /*Yuka Mullen hovercard functionality*/
-  $('#Yuka-Mullen-profile').on('click', function () {
-    yukaMullenBio.css('display', 'block');
-    }
-  );
-
-  yukaMullenBio.find('.close-hovercard').on('click', function () {
-    yukaMullenBio.css('display', 'none');
-    event.preventDefault();
-    }
-  );
-
-  /*Alex Tran hovercard functionality*/
-  $('#Alex-Tran-profile').on('click', function () {
-    alexTranBio.css('display', 'block');
-    }
-  );
-
-  alexTranBio.find('.close-hovercard').on('click', function () {
-    alexTranBio.css('display', 'none');
-    event.preventDefault();
-    }
-  );
+  $('.about-close').on('click', function () {
+    $('.modal').css('display', 'none');
+  });
 
 });

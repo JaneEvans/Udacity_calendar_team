@@ -6,6 +6,7 @@
 // });
 
 let $toggler = $("#toggleButton");
+let $send = $("button[type='submit']");
 
 //Add event listener for click to toggle either calendar or list view
 $toggler.click(function(){
@@ -22,34 +23,9 @@ function toggleView(){
         calView.hide();
         listView.attr("style", "display:inline-block");
     }
+
+
 };
-
-//if screen is smaller than 992px wide then remove style attr
-//added by the toggle so that only the list view displayed
-//in all non-desktop views
-$( window ).resize(function() {
-    if($(window).width() < 992) {
-        $('#calendar-view').removeAttr('style');
-        $('#listView').removeAttr('style');
-    }
-});
-
-//Vanilla javascript version
-/*document.getElementById('toggleButton').addEventListener('click', function () {
-    toggleView();
-});
-
-function toggleView(){
-    let calView = document.getElementById("calendarView");
-    let listView = document.getElementById("listView");
-    if (calView.style.display === "none") {
-        calView.style.display = "inline-block";
-        listView.style.display = "none";
-    } else {
-        calView.style.display = "none";
-        listView.style.display = "inline-block";
-    }
-};*/
 
 /* click listener for small nav icon to display nav list
 *  Also to remove nav list
@@ -78,22 +54,17 @@ $('#filters').click(function(event) {
 
 
 
-// Connect to the Eventbrite API
-$(document).ready(function() {
+/*
+Extraction events from EventBrite API -------------------------------------------------------------------------------------------------------------------
+*/
 
-    let token = 'XRO476MORTABZO23QCXJ';
-    let $events = $("#events");
-    let $listSection = $("#listView");
-    let $calendarSection = $("#calendar-view");
-    let $loader = $('.loader'); 
-    
-
-    //Get events by default fitlers
-    let selectFilters = getSelectedFilters();
-    $.get('https://www.eventbriteapi.com/v3/events/search/?token='+token+selectFilters+'sort_by=date', function(res) {
+//Connect to EventBrite API to get events
+function getEvents(token,sltFilters,$events,$loader) {
+    $.get('https://www.eventbriteapi.com/v3/events/search/?token='+token+sltFilters+'include_all_series_instances=false&sort_by=date', function(res) {
+        console.log("number of events pulled from EventBrite API: "+res.events.length);
         if(res.events.length) {
             let s = "<ul class='eventList'>";
-   
+
             //create an array of event by month
             //store those event in the local storage
             sessionStorage.setItem('briteEventsByMonth', JSON.stringify(briteEventByMonthObject(res.events)));
@@ -103,10 +74,8 @@ $(document).ready(function() {
 
             for(let i=0;i<res.events.length;i++) {
                 let event = res.events[i];
-
-                let eventStartDT = new Date(event.start.local);
-                let eventEndDT = new Date(event.end.local);
-                let eventStatus = event.status;
+                let eventStartDT = new Date(res.events[i].start.local);
+                let eventEndDT = new Date(res.events[i].end.local);
                 let freeEvent='';
 
                 if (event.is_free){
@@ -115,74 +84,26 @@ $(document).ready(function() {
 
                 if (event.status.toLowerCase() === 'live'){
                     eventStatus = 'open';
+                } else {
+                    eventStatus = event.status;
                 }
 
                 console.dir(event);
-                s += "<li><em><b><sup class=\'uppercase\''>"+eventStatus+"</sup></b></em>  <a id=\'event-name\'' href='" + event.url + "' target = \'_blank \' >" + event.name.text + "</a> <em><sup id=\'free-sytle\'>"+freeEvent+"</sup></em> ("+eventStartDT.toLocaleDateString()+", "+eventStartDT.toLocaleTimeString()+" ~ "+eventEndDT.toLocaleDateString()+", "+ eventEndDT.toLocaleTimeString() + ")</li>"; 
+                s += "<li><em><b><sup class=\'uppercase\'>"+eventStatus+"</sup></b></em> <a id=\'event-name\'' href='" + event.url + "' target = \'_blank \' >" + event.name.text + "</a> <em><sup id=\'free-style\'>"+freeEvent+"</sup></em> ("+eventStartDT.toLocaleDateString()+", "+eventStartDT.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})+" ~ "+eventEndDT.toLocaleDateString()+", "+ eventEndDT.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'}) + ")</li>";
             }
             s += "</ul>";
+
             $events.html(s);
         } else {
             $loader.css('display','none');
-            $calendarSection.html("<h1>Sorry, there are no upcoming events matching your filters...</h1>");
-            $listSection.html("<h1>Sorry, there are no upcoming events matching your filters...</h1>");
-            
+            alert("Sorry, there are no upcoming events matching your filters...");
+            location.reload();
+
         }
-    });  
-
-    //Submit event filters to get relevant events from Eventbrite API
-    $(".submit_filters").submit(function(event){
-        $loader.css('display','block');
-        let selectFilters = getSelectedFilters();
-
-        $.get('https://www.eventbriteapi.com/v3/events/search/?token='+token+selectFilters+'sort_by=date', function(res) {
-            if(res.events.length) {
-                let s = "<ul class='eventList'>";
-       
-                //create an array of event by month
-                //store those event in the local storage
-                sessionStorage.setItem('briteEventsByMonth', JSON.stringify(briteEventByMonthObject(res.events)));
-                sessionStorage.setItem('briteEvents', JSON.stringify(res.events));
-                $loader.css('display','none');
-                createCalendar(date, $monthHeader, $calendarDaysGrid);
-
-                for(let i=0;i<res.events.length;i++) {
-                    let event = res.events[i];
-                    let eventStartDT = new Date(res.events[i].start.local);
-                    let eventEndDT = new Date(res.events[i].end.local);
-                    let freeEvent='';
-
-                    if (event.is_free){
-                        freeEvent = 'FREE';
-                    }
-                    
-                    if (event.status.toLowerCase() === 'live'){
-                    eventStatus = 'open';
-                    }
-
-                    console.dir(event);
-                    s += "<li><em><b><sup class=\'uppercase\''>"+eventStatus+"</sup></b></em>  <a id=\'event-name\'' href='" + event.url + "' target = \'_blank \' >" + event.name.text + "</a> <em><sup id=\'free-sytle\'>"+freeEvent+"</sup></em> ("+eventStartDT.toLocaleDateString()+", "+eventStartDT.toLocaleTimeString()+" ~ "+eventEndDT.toLocaleDateString()+", "+ eventEndDT.toLocaleTimeString() + ")</li>"; 
-                }
-                s += "</ul>";
-                $events.html(s);
-            } else {
-                $loader.css('display','none');
-                $calendarSection.html("<h1>Sorry, there are no upcoming events matching your filters...</h1>");
-                $listSection.html("<h1>Sorry, there are no upcoming events matching your filters...</h1>");
-                
-            }
-        });  
-
-
-        event.preventDefault();
-
     });
 
-    // $.get('https://www.eventbriteapi.com/v3/events/search/?token='+token+"&"+selectFilters+'&location.address=seattle&q=tech&sort_by=date', function(res) {
-    
-    
+};
 
-});
 
 //Get the selected items from filter form
 function getSelectedFilters() {
@@ -190,12 +111,47 @@ function getSelectedFilters() {
     let str = $(".submit_filters").serialize();
     let selectFilters = '&';
     selectFilters += str;
-    selectFilters +="&";     
-
+    selectFilters +="&";
 
     return selectFilters;
-  
+
 };
+
+//Display events
+$(document).ready(function() {
+
+    let token = 'XRO476MORTABZO23QCXJ';
+    let $events = $("#events");
+    let $loader = $('.loader');
+    let tag_default = 'q=information--tech&';
+
+    //Display events by default fitlers
+    let selectFilters_default = getSelectedFilters()+tag_default;
+    getEvents(token,selectFilters_default,$events,$loader);
+
+
+    //Submit event filters to get updated events
+    $(".submit_filters").submit(function(event){
+        $loader.css('display','initial');
+
+        let selectFilters = getSelectedFilters();
+        if ($(".submit_filters input:checkbox:checked").length === 0){
+            selectFilters += tag_default;
+        }
+
+        getEvents(token, selectFilters, $events, $loader);
+
+        event.preventDefault();
+
+    });
+
+});
+
+/*
+--------------------------------------------------------------------------------------------------------------------------------
+*/
+
+
 
 //gets events and returns an object with events organized by month
 //is zero based just like Date object's getMonth() method.
@@ -212,4 +168,26 @@ function briteEventByMonthObject(events) {
     return byMonth;
 }
 
-
+$send.click(function(e){
+    e.preventDefault();
+    let id = $(this).closest(".submit-container").find(".success-modal").attr("id");
+    switch(id) {
+        case 'signupSuccess':
+            alert("Thanks for signing up!");
+            break;
+        case 'loginSuccess':
+            alert("You're logged in!");
+            break;
+        case 'submitSuccess':
+            alert("Your event has been added!");
+            break;
+    }
+    if(location.search) {
+        let searchStr=location.search;
+        searchStr = searchStr.substring(0,searchStr.lastIndexOf('/'));
+        searchStr = searchStr.concat('/index.html');
+        location.search = searchStr;
+    } else {
+        $(location).attr('href','./index.html');
+    }
+});

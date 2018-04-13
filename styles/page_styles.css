@@ -24,24 +24,24 @@ h2 {
 }
 
 h4 {
-    font-family: 'Mina', sans-serif; 
+    font-family: 'Mina', sans-serif;
     font-weight: bold;
     color: #353535FF;
 /*    font-size: 100%;
 */}
 
 legend {
-    font-family: 'Mina', sans-serif; 
+    font-family: 'Mina', sans-serif;
     font-weight: bold;
     font-size: 130%;
     padding-left: 2px;
     padding-right: 2px;
     color:#000000FF;
-    border: none;   
+    border: none;
 }
 
 .filter-item{
-    font-family: 'Mina', sans-serif; 
+    font-family: 'Mina', sans-serif;
     color: #5B5B5BFF;
     font-size: 85%;
 }
@@ -76,6 +76,7 @@ header {
 main {
     grid-area: main;
     position: relative;
+    min-height: 360px;
 }
 
 aside {
@@ -106,11 +107,11 @@ b {
     color:#20DEDCFF;
 }
 
-.uppercase { 
-    text-transform: uppercase; 
+.uppercase {
+    text-transform: uppercase;
 }
 
-#free-sytle {  
+#free-style {
   font-family: 'East Sea Dokdo', cursive;
   font-size: 140% ;
   color:#FF0030FF;
@@ -216,7 +217,7 @@ b {
     z-axis: 90; */
 }
 
-.material-icons.small-nav-open-icon, .material-icons.small-nav-close-icon,
+.small-nav-open-icon, .material-icons.small-nav-close-icon,
 .small-view-filter {
     display: none;
 }
@@ -228,10 +229,21 @@ b {
                              'main main '
                              'footer footer';
     }
-    .material-icons.small-nav-open-icon, .material-icons.small-nav-close-icon {
-        display: block;
+    .small-nav-open-icon, .material-icons.small-nav-close-icon {
+        display: inline-block;
         cursor: pointer;
-        margin-right: 25px;
+    }
+
+    .small-nav-open-icon {
+        font-size: 20px;
+        line-height: 1.5em;
+    }
+
+    .small-nav-open-icon .material-icons {
+        display: inline-block;
+        margin-right: 2px;
+        vertical-align: middle;
+        font-size: 30px;
     }
 
     .small-nav-close-icon {
@@ -274,9 +286,8 @@ b {
         line-height: 1.5em;
     }
     #navigation ul li::after,
-    #navigation ul li:last-child::after,
-    .filter-link::after  {
-        content: '\203A';
+    #navigation ul li:last-child::after {
+        content: '\203A'; /*chevron*/
         padding: 0 10px;
         font-size: 1.25em;
 
@@ -286,6 +297,17 @@ b {
         display: block;
         text-align: right;
         cursor: pointer;
+    }
+
+    .small-view-filter .material-icons {
+        vertical-align: middle;
+    }
+
+    .small-view-filter .filter-link {
+        background-color: rgb(42,56,64);
+        display: inline-block;
+        padding: .3em .4em;
+        color: white;
     }
 
     .filter-container {
@@ -503,8 +525,9 @@ input:checked + .slider:after {
 }
 
 #calendar-view time {
+    position: relative;
     height: 108px;
-    border-radius: 2.5%;
+    border-radius: .25em;
     box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform .2s;
@@ -565,25 +588,51 @@ input:checked + .slider:after {
 }
 
 .event-details {
-    margin: auto 5px;
+    overflow: hidden;
 }
 
 .event-details ul {
     padding: 0;
+    margin: .4em;
 }
 
 .event-details li {
     font-size: 10px;
     list-style-type: none;
-    line-height: 1.4em;
+    line-height: 1.3em;
 }
 
+.event-display-count-container {
+    position: absolute;
+    display: table;
+    color: #04040440;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), white,white);
+    height: 2.3em;
+    width: 100%;
+}
+
+.event-display-count {
+    text-align: right;
+    margin: auto;
+    display: table-cell;
+    vertical-align: bottom;
+    font-size: 10px;
+}
+
+.event-display-count .material-icons {
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+
+/*changing to using # of events, keeping incase this changes*/
 .event-details li:not(:last-child)::after {
     content: "";
-    border-bottom: solid 1px lightgray;;
+    border-bottom: solid 1px lightgray;
     display: block;
-    width: 85%;
-    margin: .5em auto;
+    width: 95%;
+    margin: .3em auto;
 }
 
 .event-time {
@@ -608,13 +657,16 @@ input:checked + .slider:after {
 
 .modal-content {
     position: relative;
-    margin: 15% auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     overflow: hidden;
-    border-radius: 2.5%;
+    border-radius: .4em;
     box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
     background-color: white;
     width: 25vw;
     min-height: 250px;
+    height: 40%; /*need to make scroll work*/
 }
 
 .modal-content .date-num {
@@ -637,16 +689,44 @@ input:checked + .slider:after {
     cursor: pointer;
 }
 
+.modal-content .event-details {
+    overflow: auto;
+    height: 80%;
+}
+
+.modal-content ul {
+    margin: 1em;
+}
+
+.modal-content li {
+    display: flex;
+    flex-flow: row;
+    font-size: 12px;
+    margin: .75em auto;
+}
+
+/*removed events in cal view, keeping incase this changes*/
+.modal-content li:not(:last-child)::after {
+    content: none;
+}
+
+/*removed to have num of events in cal view instead.  keeping incase this changes*/
 .modal-content .event-name-short {
     display: none;
 }
 
 .modal-content .event-time {
-    display: block;
+    display: inline-block;
+    flex: 0 0 20%;
 }
 
 .modal-content .event-name-long {
-    display: block;
+    display: inline-block;
+    flex: 0 1 auto;
+}
+
+.modal-content .event-display-count-container {
+    display: none;
 }
 
 /* displays with animation until API data loads */
@@ -659,10 +739,12 @@ input:checked + .slider:after {
     animation: spin 2s linear infinite;
     /* center loader in middle of cal/list */
     position: absolute;
+    /*position: static;*/
     margin: auto;
-    top: 50%;
+    top: 20%;
     left: 0;
     right: 0;
+    z-index: 5;
 }
 
 /* Safari */
@@ -677,41 +759,33 @@ input:checked + .slider:after {
 }
 
 /*About Page*/
-.hovercard {
-    border-radius: .57em;
-    border-style: solid;
-    border-width: .12em;
-    border-color: #4d4e4f;
-    border-bottom: .18em solid;
-    border-right: .15em solid;
-    display: none;
-    position: fixed; 
-    z-index: 1;
-    top: 50%;
-    left: 50%;
-    padding: .8em 2.5em .9em 2em;
-    font-family: 'Arial';
-    font-family: 'Work Sans';
-    font-size: 120%;
-    overflow: auto; 
-    background-color: #ffffff;
-    background-color: rgba(255,255,255,0.94);
-    transform: translate(-70%, -30%);
+.about-modal-content {
+    position: relative;
+    margin: 15% auto;
+    overflow: auto;
+    border-radius: 2.5%;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    width: 50vw;
 }
 
-.close-hovercard {
+
+.modal .bio {
+  margin: 2em;
+}
+
+.modal .about-close {
   position: absolute;
-  right: .44em;
-  top: .35em;
-  font-siZe: 170%;
-  border-style: solid;
-  border-width: .08em;
-  border-radius: .22em;
-  cursor: pointer;
+  top: 0;
+  right: 0;
+  font-size: 35px;
+  color: #000;
+  margin: 6px 10px;
 }
 
-.close-hovercard:hover {
-  transform: scale(1.1);
+.modal .about-close:hover {
+    color: #aaa;
+    cursor: pointer;
 }
 
 #about-wrapper {
@@ -730,10 +804,8 @@ input:checked + .slider:after {
 
 #about-main {
   grid-area: about-main;
-/*   background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/76/Downtown_Seattle_skyline_from_Elliott_Bay_02.jpg");
-    background-position:;
-    background-repeat: no-repeat;
-    background-size: cover; */
+  max-width: 1800px;
+  margin: 0 auto;
 }
 
 
@@ -741,16 +813,30 @@ input:checked + .slider:after {
   display: grid;
   grid-gap: 1em;
   grid-template-columns: 3fr 1fr;
-  grid-template-rows: ;
-  grid-template-areas:  "  us    us  "
-                        "team contact"
-                        "team    .   ";
-  margin: 5% 10% 7% 10%;
+  grid-template-areas:  "  us       us   "
+                        " team    contact"
+                        " team     .     ";
+  margin: 2% 5%;
+}
+
+@media only screen and (max-width: 992px) {
+  #about-container {
+  display: grid;
+  grid-gap: 1em;
+  grid-template-areas:  "   us        us  "
+                        "  team      team "
+                        " contact contact ";
+  margin: 2% auto;
+  }
+
+  .about-modal-content {
+  width: 70vw;
+  }
 }
 
 #about-us {
   background-color: #d3d3d3;
-  rbga: (211, 211, 211, .8);
+  background-color: rbga(211, 211, 211, 0.8);
   border-radius: .57em;
   grid-area: us;
   margin-bottom: 2%;
@@ -760,7 +846,7 @@ input:checked + .slider:after {
 
 #about-team {
   background-color: #c0c0c0;
-  rbga: (192, 192, 192, .8);
+  background-color: rbga(192, 192, 192, 0.8);
   border-radius: .57em;
   grid-area: team;
 }
@@ -769,7 +855,7 @@ input:checked + .slider:after {
   grid-area: contact;
   border-radius: .57em;
   background-color: #cfcfcf;
-  background-color: (207, 207, 207, .8);
+  background-color: rgba(207, 207, 207, 0.8);
   padding: 1em;
 }
 
@@ -778,8 +864,7 @@ a:link {
 }
 
 #about-us > h1 {
-  font-family: 'Georgia';
-  font-family: 'Mina';
+  font-family: 'Mina', sans-serif;
   font-size: 200%;
   line-height: 130%;
   letter-spacing: .22em;
@@ -789,20 +874,10 @@ a:link {
 
 #roster {
   display: grid;
- 
-  grid-gap: .5em;
-  grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas:  "row1"
                         "row2"
-                        "row3"; 
+                        "row3";
 }
-
-/* #roster-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-
 
 .roster-row {
   display: flex;
@@ -812,10 +887,10 @@ a:link {
   justify-content: space-evenly;
 }
 
+/* Code previously used in conjunction with "space-between" for even spacing in rows */
 /* .roster-row::before {
   content: '';
 }
-
 .roster-row::after {
   content: '';
 }
@@ -840,10 +915,13 @@ a:link {
 }
 
 .profile {
-  text-align: center;
-  width: 220px;
-  height: 270px;
   cursor: pointer;
+  min-width: 220px;
+  max-width: 220px;
+  min-height: 270px;
+  padding: 0.5em;
+  max-height: 270px;
+  text-align: center; 
 }
 
 /* .profile:hover {
@@ -853,26 +931,27 @@ a:link {
 .focus {
   display: inline-block;
   text-align: left;
-  font-family: 'Arial';
-  font-family: 'Work Sans';
+  font-family: 'Mina', sans-serif;
   font-size: 112%;
 }
 
 .name {
-  font-family: 'Work Sans';
-  font-size: 130%;
+  font-family: 'Mina', sans-serif;
+  font-size: 135%;
 }
 
-#profile-image {
+.profile-image {
+  border: .1em solid;
+  border-color: rgba(222, 236, 244, .6);
   border-radius: 50%;
   display: block;
   margin-left: auto;
   margin-right: auto;
   max-width: 150px;
-  
+
 }
 
-#profile-image:hover {
+.profile-image:hover {
   transform: scale(1.11);
 }
 
@@ -880,27 +959,32 @@ a:link {
 #about-contact > h2 {
   line-height: 130%;
   text-align: center;
-  /*font-fmaily: 'Georgia';*/
-  font-family: 'Mina';
+  font-family: 'Mina', sans-serif;
   font-size: 200%;}
 
 #about-team > h3 {
-  font-family: 'Work Sans';
+  font-family: 'Mina', sans-serif;
   text-align: center;
 }
 
 #about-us,
 .about-contact > #contact-container,
 form {
-  font-family: 'Arial';
-  font-family: 'Signika';
+/* font-family: 'Signika';
   font-family: 'Maven Pro';
-  font-family: 'Work Sans';
+  font-family: 'Work Sans';*/
+  font-family: 'Mina', sans-serif;
   font-size: 120%;
 }
 
 #send {
-  cursor: pointer;
+   background-color: #1BB24E;
+   color: white;
+   padding: 14px 20px;
+   margin: 8px 0;
+   cursor: pointer;
+   opacity: 0.9;
+/*   cursor: pointer;
   display: block;
   display: inline-block;
   border-radius: .5em;
@@ -908,11 +992,21 @@ form {
   border-shadow: 1em;
   font-family: 'Arial';
   font-family: 'Work Sans';
-  font-size: 90%;
+  font-size: 90%; */
+}
+
+input[id='name'],
+input[id='email'],
+textarea[id='message'] {
+  font-family: 'Mina', sans-serif;
+     font-size: 15px;
 }
 
 /* Sign up page */
-
+.submit-form {
+    border:1px solid #ccc;
+    border-radius: 5px;
+}
 /*using same wrapper for sign up, login, submission page*/
 .submit-wrapper {
     display: grid;
@@ -941,6 +1035,7 @@ form {
     display: flex;
     flex-flow: column nowrap;
     padding: 10px;
+    background-color: rgba(207, 207, 207, 0.8);
 }
 
 .submit-container > input, .event_time > input {
@@ -998,7 +1093,7 @@ input[name="event-details"]{
 }
 
 .addeventbtn {
-    background-color: #8FBEDB;
+    background-color: #20DEDCFF;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -1028,8 +1123,7 @@ textarea {
 }
 
 input[type=submit] {
-     font-family: 'Mina', sans-serif; 
+     font-family: 'Mina', sans-serif;
      font-size: 15px;
 
 }
-
